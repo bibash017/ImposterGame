@@ -14,7 +14,7 @@ const modeDescs = {
 // If n grows, add new default names. If n shrinks, trim the array.
 function initNames(n) {
   while (playerNames.length < n) {
-    playerNames.push('player ' + (playerNames.length + 1));
+    playerNames.push('Player ' + (playerNames.length + 1));
   }
   playerNames = playerNames.slice(0, n);
 }
