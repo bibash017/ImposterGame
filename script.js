@@ -6,9 +6,9 @@ let editingIndex = -1;
 
 // ── Difficulty descriptions ──
 const modeDescs = {
-  easy:   "common, familiar words — great for mixed groups",
-  medium: "a bit trickier, vague hints",
-  hard:   "abstract words, barely-there hints"
+  easy:   "Common, familiar words — great for mixed groups",
+  medium: "A bit trickier, vague hints",
+  hard:   "Abstract words, barely-there hints"
 };
 
 
@@ -117,7 +117,7 @@ function renderPlayers() {
 
 // ── Save a renamed player ──
 function saveEdit(i, val) {
-  playerNames[i] = val.trim() || ("player " + (i + 1));
+  playerNames[i] = val.trim() || ("Player " + (i + 1));
   editingIndex = -1;
   renderPlayers();
 }
@@ -145,13 +145,13 @@ async function startGame() {
     const result = await getWordAndHint(mode);
 
     // store in sessionStorage so the card screen can access them
-    sessionStorage.setItem("word",        result.word);
-    sessionStorage.setItem("hint",        result.hint);
-    sessionStorage.setItem("mode",        mode);
-    sessionStorage.setItem("playerCount", playerCount);
-    sessionStorage.setItem("playerNames", JSON.stringify(playerNames));
+    sessionStorage.setItem("Word",        result.word);
+    sessionStorage.setItem("Hint",        result.hint);
+    sessionStorage.setItem("Mode",        mode);
+    sessionStorage.setItem("PlayerCount", playerCount);
+    sessionStorage.setItem("PlayerNames", JSON.stringify(playerNames));
 
-    loadingMsg.textContent = "got it! starting...";
+    loadingMsg.textContent = "Got it! starting...";
 
     // small pause so the user sees the message, then go to card screen
     setTimeout(() => {
@@ -161,7 +161,7 @@ async function startGame() {
   } catch (err) {
     // something unexpected happened
     console.error(err);
-    loadingMsg.textContent = "something went wrong. try again.";
+    loadingMsg.textContent = "Something went wrong. try again.";
     loadingMsg.style.color = "#d85a30";
     btn.disabled = false;
   }
