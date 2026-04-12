@@ -5,9 +5,9 @@ let editingIndex = 1;
 
 // ── Difficulty descriptions ──
 const modeDescs = {
-  easy:   'common, familiar words — great for mixed groups',
-  medium: 'a bit trickier, vague hints',
-  hard:   'abstract words, barely-there hints'
+  easy:   'Common, familiar words — great for mixed groups!',
+  medium: 'A bit trickier, vague hints!',
+  hard:   'Abstract words, barely-there hints!'
 };
 
 // ── Fill playerNames array up to n players ──
