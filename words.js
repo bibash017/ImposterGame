@@ -23,7 +23,7 @@ const fallbackWords = {
   ]
 };
  
-// Build the prompt we send to Claude
+//the prompt we send to Claude
 function buildPrompt(difficulty) {
   const difficultyGuide = {
     easy:   "The word should be very common and everyday (like 'pizza', 'dog', 'umbrella'). The hint should be somewhat helpful.",
@@ -51,12 +51,6 @@ Format:
 // Main function — call this from script.js
 // Returns { word, hint } or throws an error
 async function getWordAndHint(difficulty) {
- 
-  // Safety check — if no key is set, use fallback immediately
-  if (!ANTHROPIC_API_KEY || ANTHROPIC_API_KEY === "paste-your-key-here") {
-    console.warn("No API key found — using fallback word bank.");
-    return getRandomFallback(difficulty);
-  }
  
   try {
     const response = await fetch("https://api.anthropic.com/v1/messages", {
