@@ -11,23 +11,23 @@
 <body>
 
   <div class="wrap">
-    <div class="game-title">Imposter — word game</div>
+    <div class="game-title">imposter — word game</div>
 
     <!-- Player count -->
-    <div class="section-label">Number of Players</div>
+    <div class="section-label">number of players</div>
     <div class="player-count-row" id="countRow"></div>
 
     <!-- Difficulty -->
-    <div class="section-label">Difficulty</div>
+    <div class="section-label">difficulty</div>
     <div class="mode-row">
       <button class="mode-btn" id="mEasy" onclick="setMode('easy')">
-        <span class="mode-icon"></span>Easy
+        <span class="mode-icon">○</span>easy
       </button>
       <button class="mode-btn" id="mMed" onclick="setMode('medium')">
-        <span class="mode-icon"></span>Medium
+        <span class="mode-icon">◑</span>medium
       </button>
       <button class="mode-btn" id="mHard" onclick="setMode('hard')">
-        <span class="mode-icon"></span>Hard
+        <span class="mode-icon">●</span>hard
       </button>
     </div>
     <div class="mode-desc" id="modeDesc"></div>
@@ -40,9 +40,12 @@
       <div class="player-list" id="playerList"></div>
     </div>
 
-    <button class="start-btn" onclick="startGame()">Start Game</button>
+    <button class="start-btn" id="startBtn" onclick="startGame()">start game</button>
+    <div class="loading-msg" id="loadingMsg"></div>
   </div>
 
+  <script src="config.js"></script>
+  <script src="words.js"></script>
   <script src="script.js"></script>
 
 </body>
