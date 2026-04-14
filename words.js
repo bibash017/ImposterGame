@@ -110,3 +110,10 @@ async function getWordAndHint(difficulty) {
     return getRandomFallback(difficulty);
   }
 }
+
+// Pick a random word from the fallback list for this difficulty
+function getRandomFallback(difficulty) {
+  const list = fallbackWords[difficulty];
+  const randomIndex = Math.floor(Math.random() * list.length);
+  return list[randomIndex];
+}
