@@ -81,7 +81,7 @@ const hasApiKey =
 
     const data = await response.json();
     const text = data.content[0].text.trim();
-    const parsed = JSON.parse(text);
+    //const parsed = JSON.parse(text);
 
     if (!parsed.word || !parsed.hint) {
       throw new Error("Missing word or hint in response");
