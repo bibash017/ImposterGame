@@ -1,4 +1,4 @@
-// Fallback words in case the API call fails 
+
 const fallbackWords = {
   easy: [
     { word: "Pizza",      hint: "Italian food" },
@@ -22,36 +22,38 @@ const fallbackWords = {
     { word: "Irony",      hint: "Literary device" },
   ]
 };
- 
-//the prompt we send to Claude
+
 function buildPrompt(difficulty) {
-  const difficultyGuide = {
+  const guide = {
     easy:   "The word should be very common and everyday (like 'pizza', 'dog', 'umbrella'). The hint should be somewhat helpful.",
     medium: "The word should be moderately common (like 'compass', 'lighthouse'). The hint should be vague.",
     hard:   "The word should be abstract or complex (like 'democracy', 'nostalgia'). The hint should be barely useful."
   };
- 
+
   return `You are generating content for a word guessing party game called Imposter.
- 
+
 Difficulty: ${difficulty}
-${difficultyGuide[difficulty]}
- 
+${guide[difficulty]}
+
 Generate ONE word and ONE short hint for the imposter game.
- 
+
 Rules:
 - The word should be a single noun or concept
 - The hint should be 2-4 words only, vague enough that the imposter can fake knowing the word
-- Do not make the hint too obvious — it should help but not give it away
+- Do not make the hint too obvious
 - Return ONLY valid JSON, nothing else, no explanation
- 
+
 Format:
 {"word": "YourWord", "hint": "your short hint"}`;
 }
-  
-// Main function — call this from script.js
-// Returns { word, hint } or throws an error
+
 async function getWordAndHint(difficulty) {
- 
+  // No key set — skip API and use fallback
+  if (!ANTHROPIC_API_KEY || ANTHROPIC_API_KEY === "paste-your-key-here") {
+    console.warn("No API key — using fallback words.");
+    return getRandomFallback(difficulty);
+  }
+
   try {
     const response = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
@@ -59,55 +61,40 @@ async function getWordAndHint(difficulty) {
         "Content-Type": "application/json",
         "x-api-key": ANTHROPIC_API_KEY,
         "anthropic-version": "2023-06-01",
-        // This header is needed when calling the API from a browser
         "anthropic-dangerous-direct-browser-access": "true"
       },
       body: JSON.stringify({
-        model: "claude-haiku-4-5-20251001",  // fastest + cheapest model, perfect for this
+        model: "claude-haiku-4-5-20251001",
         max_tokens: 100,
         messages: [
-          {
-            role: "user",
-            content: buildPrompt(difficulty)
-          }
+          { role: "user", content: buildPrompt(difficulty) }
         ]
       })
     });
- 
-    // If the server returned an error (bad key, no credits, etc.)
+
     if (!response.ok) {
       const err = await response.json();
       console.error("API error:", err);
-      console.warn("Falling back to local word bank.");
       return getRandomFallback(difficulty);
     }
- 
+
     const data = await response.json();
- 
-    // Pull the text out of the response
     const text = data.content[0].text.trim();
- 
-    // Parse the JSON Claude returned
     const parsed = JSON.parse(text);
- 
-    // Make sure both fields exist
+
     if (!parsed.word || !parsed.hint) {
       throw new Error("Missing word or hint in response");
     }
- 
+
     return { word: parsed.word, hint: parsed.hint };
- 
+
   } catch (error) {
-    // Something went wrong — log it and use fallback
     console.error("getWordAndHint failed:", error);
-    console.warn("Using fallback word.");
     return getRandomFallback(difficulty);
   }
 }
 
-// Pick a random word from the fallback list for this difficulty
 function getRandomFallback(difficulty) {
   const list = fallbackWords[difficulty];
-  const randomIndex = Math.floor(Math.random() * list.length);
-  return list[randomIndex];
+  return list[Math.floor(Math.random() * list.length)];
 }
