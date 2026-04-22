@@ -1,11 +1,26 @@
 
 const fallbackWords = {
   easy: [
-    { word: "Pizza",      hint: "Italian food" },
-    { word: "Dog",        hint: "Common pet" },
-    { word: "Chair",      hint: "Furniture" },
-    { word: "Apple",      hint: "Fruit" },
-    { word: "Rain",       hint: "Weather" },
+    { word: "Pizza", hint: "party food" },
+    { word: "Dog", hint: "common pet" },
+    { word: "Chair", hint: "sit here" },
+    { word: "Apple", hint: "lunch fruit" },
+    { word: "Rain", hint: "cloudy day" },
+    { word: "Book", hint: "many pages" },
+    { word: "Shoes", hint: "worn outside" },
+    { word: "Window", hint: "lets light" },
+    { word: "Phone", hint: "everyday device" },
+    { word: "Bread", hint: "breakfast food" },
+    { word: "Beach", hint: "sand and sea" },
+    { word: "School", hint: "learning place" },
+    { word: "Toothbrush", hint: "bathroom item" },
+    { word: "Pillow", hint: "soft comfort" },
+    { word: "Bottle", hint: "holds water" },
+    { word: "Camera", hint: "takes photos" },
+    { word: "Flower", hint: "garden plant" },
+    { word: "Clock", hint: "tells time" },
+    { word: "Banana", hint: "yellow fruit" },
+    { word: "Train", hint: "public transport" }
   ],
   medium: [
     { word: "Compass",    hint: "Navigation tool" },
