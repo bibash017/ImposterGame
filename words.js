@@ -47,9 +47,10 @@ Format:
 {"word": "YourWord", "hint": "your short hint"}`;
 }
 
-async function getWordAndHint(difficulty) {
-  // No key set — skip API and use fallback
-  if (!ANTHROPIC_API_KEY || ANTHROPIC_API_KEY === "paste-your-key-here") {
+const hasApiKey =
+  typeof ANTHROPIC_API_KEY !== "undefined" &&
+  ANTHROPIC_API_KEY &&
+  ANTHROPIC_API_KEY !== "key goes here.........."; {
     console.warn("No API key — using fallback words.");
     return getRandomFallback(difficulty);
   }
