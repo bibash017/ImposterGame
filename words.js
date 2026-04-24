@@ -56,8 +56,3 @@ const fallbackWords = {
 function getStorageKey(difficulty) {
   return `usedWords_${difficulty}`;
 }
-
-function getRandomFallback(difficulty) {
-  const list = fallbackWords[difficulty];
-  return list[Math.floor(Math.random() * list.length)];
-}
