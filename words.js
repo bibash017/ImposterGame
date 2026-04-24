@@ -1,5 +1,4 @@
-
-const fallbackWords = {
+const WORD_BANK = {
   easy: [
     { word: "Pizza", hint: "party food" },
     { word: "Dog", hint: "common pet" },
