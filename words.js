@@ -56,3 +56,27 @@ const fallbackWords = {
 function getStorageKey(difficulty) {
   return `usedWords_${difficulty}`;
 }
+
+function getRandomUnusedWord(difficulty) {
+  const list = WORD_BANK[difficulty] || WORD_BANK.easy;
+  const used = new Set(JSON.parse(sessionStorage.getItem(getStorageKey(difficulty)) || "[]"));
+
+  if (used.size >= list.length) {
+    used.clear();
+  }
+
+  let index = Math.floor(Math.random() * list.length);
+
+  while (used.has(index)) {
+    index = Math.floor(Math.random() * list.length);
+  }
+
+  used.add(index);
+  sessionStorage.setItem(getStorageKey(difficulty), JSON.stringify([...used]));
+
+  return list[index];
+}
+
+async function getWordAndHint(difficulty) {
+  return getRandomUnusedWord(difficulty);
+}
