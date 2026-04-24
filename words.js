@@ -23,11 +23,26 @@ const fallbackWords = {
     { word: "Train", hint: "public transport" }
   ],
   medium: [
-    { word: "Compass",    hint: "Navigation tool" },
-    { word: "Lighthouse", hint: "Near the sea" },
-    { word: "Telescope",  hint: "Used for viewing" },
-    { word: "Cactus",     hint: "Desert plant" },
-    { word: "Escalator",  hint: "Found in buildings" },
+    { word: "Compass", hint: "finds direction" },
+    { word: "Lighthouse", hint: "ocean tower" },
+    { word: "Telescope", hint: "night sky" },
+    { word: "Cactus", hint: "desert plant" },
+    { word: "Escalator", hint: "moving stairs" },
+    { word: "Backpack", hint: "travel carry" },
+    { word: "Lantern", hint: "dark places" },
+    { word: "Volcano", hint: "fiery mountain" },
+    { word: "Helmet", hint: "safety gear" },
+    { word: "Passport", hint: "travel paper" },
+    { word: "Microscope", hint: "tiny world" },
+    { word: "Sculpture", hint: "shaped art" },
+    { word: "Glacier", hint: "frozen giant" },
+    { word: "Submarine", hint: "under water" },
+    { word: "Chimney", hint: "roof opening" },
+    { word: "Windmill", hint: "spinning blades" },
+    { word: "Treasure", hint: "hidden value" },
+    { word: "Castle", hint: "old fortress" },
+    { word: "Bridge", hint: "over water" },
+    { word: "Orbit", hint: "around center" }
   ],
   hard: [
     { word: "Democracy",  hint: "Political concept" },
@@ -38,28 +53,8 @@ const fallbackWords = {
   ]
 };
 
-function buildPrompt(difficulty) {
-  const guide = {
-    easy:   "The word should be very common and everyday (like 'pizza', 'dog', 'umbrella'). The hint should be somewhat helpful.",
-    medium: "The word should be moderately common (like 'compass', 'lighthouse'). The hint should be vague.",
-    hard:   "The word should be abstract or complex (like 'democracy', 'nostalgia'). The hint should be barely useful."
-  };
-
-  return `You are generating content for a word guessing party game called Imposter.
-
-Difficulty: ${difficulty}
-${guide[difficulty]}
-
-Generate ONE word and ONE short hint for the imposter game.
-
-Rules:
-- The word should be a single noun or concept
-- The hint should be 2-4 words only, vague enough that the imposter can fake knowing the word
-- Do not make the hint too obvious
-- Return ONLY valid JSON, nothing else, no explanation
-
-Format:
-{"word": "YourWord", "hint": "your short hint"}`;
+function getStorageKey(difficulty) {
+  return `usedWords_${difficulty}`;
 }
 
 const hasApiKey =
