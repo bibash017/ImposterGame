@@ -102,6 +102,8 @@ function saveEdit(i, val) {
 async function startGame() {
   if (!mode) {
     const desc = document.getElementById("modeDesc");
+    const imposterIndex = Math.floor(Math.random() * playerCount);
+    sessionStorage.setItem("imposterIndex", imposterIndex);
     desc.textContent = "← pick a difficulty first";
     desc.style.color = "#d85a30";
     return;
@@ -115,12 +117,14 @@ async function startGame() {
 
   try {
     const result = await getWordAndHint(mode);
+    const imposterIndex = Math.floor(Math.random() * playerCount);
 
-    sessionStorage.setItem("word",        result.word);
-    sessionStorage.setItem("hint",        result.hint);
-    sessionStorage.setItem("mode",        mode);
-    sessionStorage.setItem("playerCount", playerCount);
-    sessionStorage.setItem("playerNames", JSON.stringify(playerNames));
+        sessionStorage.setItem("word", result.word);
+        sessionStorage.setItem("hint", result.hint);
+        sessionStorage.setItem("mode", mode);
+        sessionStorage.setItem("playerCount", playerCount);
+        sessionStorage.setItem("playerNames", JSON.stringify(playerNames));
+        sessionStorage.setItem("imposterIndex", imposterIndex);
 
     loadingMsg.textContent = "got it! starting...";
 
