@@ -57,30 +57,6 @@ function getStorageKey(difficulty) {
   return `usedWords_${difficulty}`;
 }
 
-
-  
-    if (!response.ok) {
-      const err = await response.json();
-      console.error("API error:", err);
-      return getRandomFallback(difficulty);
-    }
-
-    const data = await response.json();
-    const text = data.content[0].text.trim();
-    //const parsed = JSON.parse(text);
-
-    if (!parsed.word || !parsed.hint) {
-      throw new Error("Missing word or hint in response");
-    }
-
-    return { word: parsed.word, hint: parsed.hint };
-
-  } catch (error) {
-    console.error("getWordAndHint failed:", error);
-    return getRandomFallback(difficulty);
-  }
-}
-
 function getRandomFallback(difficulty) {
   const list = fallbackWords[difficulty];
   return list[Math.floor(Math.random() * list.length)];
