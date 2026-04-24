@@ -41,7 +41,7 @@ function setMode(m) {
   document.getElementById("mMed").className  = "mode-btn" + (m === "medium" ? " active-medium" : "");
   document.getElementById("mHard").className = "mode-btn" + (m === "hard"   ? " active-hard"   : "");
   const desc = document.getElementById("modeDesc");
-  desc.textContent = modeDescs[m];
+  desc.textContent = modeDescs.get(m);
   desc.style.color = "#3a3a38";
 }
 
