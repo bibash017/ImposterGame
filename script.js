@@ -1,5 +1,3 @@
-
-
 let playerCount = 4;
 let mode = null;
 let playerNames = [];
@@ -7,7 +5,7 @@ let editingIndex = -1;
 
 const modeDescs = {
   easy:   "common, familiar words — great for mixed groups",
-  medium: "a bit trickier, vague hints",
+  medium: "a bit trickier, vage hints",
   hard:   "abstract words, barely-there hints"
 };
 
@@ -41,7 +39,7 @@ function setMode(m) {
   document.getElementById("mMed").className  = "mode-btn" + (m === "medium" ? " active-medium" : "");
   document.getElementById("mHard").className = "mode-btn" + (m === "hard"   ? " active-hard"   : "");
   const desc = document.getElementById("modeDesc");
-  desc.textContent = modeDescs.get(m);
+  desc.textContent = modeDescs[m];
   desc.style.color = "#3a3a38";
 }
 
