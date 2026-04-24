@@ -57,13 +57,6 @@ function getStorageKey(difficulty) {
   return `usedWords_${difficulty}`;
 }
 
-const hasApiKey =
-  typeof ANTHROPIC_API_KEY !== "undefined" &&
-  ANTHROPIC_API_KEY &&
-  ANTHROPIC_API_KEY !== "key goes here.........."; {
-    console.warn("No API key — using fallback words.");
-    return getRandomFallback(difficulty);
-  }
 
   
     if (!response.ok) {
