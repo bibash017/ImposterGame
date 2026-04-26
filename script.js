@@ -124,7 +124,7 @@ async function startGame() {
         sessionStorage.setItem("playerNames", JSON.stringify(playerNames));
         sessionStorage.setItem("imposterIndex", imposterIndex);
 
-    loadingMsg.textContent = "got it! starting...";
+    loadingMsg.textContent = "Got it! starting...";
 
     setTimeout(() => {
       window.location.href = "game.html";
@@ -132,7 +132,7 @@ async function startGame() {
 
   } catch (err) {
     console.error(err);
-    loadingMsg.textContent = "something went wrong. try again.";
+    loadingMsg.textContent = "Something went wrong. try again.";
     loadingMsg.style.color = "#d85a30";
     btn.disabled = false;
   }
