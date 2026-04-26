@@ -101,7 +101,7 @@ async function startGame() {
   if (!mode) {
     const desc = document.getElementById("modeDesc");
     const imposterIndex = Math.floor(Math.random() * playerCount);
-    sessionStorage.setItem("imposterIndex", imposterIndex);
+    sessionStorage.setItem("ImposterIndex", imposterIndex);
     desc.textContent = "← pick a difficulty first";
     desc.style.color = "#d85a30";
     return;
