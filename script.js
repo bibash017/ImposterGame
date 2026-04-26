@@ -1,7 +1,7 @@
 let playerCount = 4;
 let mode = null;
 let playerNames = [];
-let editingIndex = -1;
+//let editingIndex = -1;
 
 const modeDescs = {
   easy:   "common, familiar words — great for mixed groups",
