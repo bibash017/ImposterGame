@@ -47,7 +47,23 @@
       </div>
     </div>
 
+    <!-- Tap hint -->
+    <div class="tap-hint" id="tapHint">tap the card</div>
 
+    <!-- Hide + pass button — shown after card is revealed -->
+    <div class="action-area" id="actionArea">
+      <button class="hide-btn" id="hideBtn" onclick="hideCard()">
+        hide &amp; pass to next player
+      </button>
+    </div>
+
+    <!-- All done screen — shown after last player -->
+    <div class="done-screen" id="doneScreen">
+      <div class="done-icon">◉</div>
+      <div class="done-title">everyone's seen their card</div>
+      <div class="done-sub">start discussing — find the imposter!</div>
+      <button class="play-again-btn" onclick="playAgain()">play again</button>
+    </div>
 
   </div>
 
