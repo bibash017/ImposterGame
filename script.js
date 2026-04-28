@@ -4,9 +4,9 @@ let playerNames = [];
 let editingIndex = -1;
 
 const modeDescs = {
-  easy:   "common, familiar words — great for mixed groups",
-  medium: "a bit trickier, vage hints",
-  hard:   "abstract words, barely-there hints"
+  easy:   "Common, familiar words — great for mixed groups",
+  medium: "A bit trickier, vage hints",
+  hard:   "Abstract words, barely-there hints"
 };
 
 function initNames(n) {
