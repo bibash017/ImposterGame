@@ -1,0 +1,315 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #f5f4f0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2.5rem 1rem 3rem;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 460px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+/* ── Top bar ── */
+.topbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+
+.game-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: #2c2c2a;
+  text-transform: uppercase;
+}
+
+.progress-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: #5f5e5a;
+  letter-spacing: 0.06em;
+}
+
+/* ── Whose turn ── */
+.turn-header {
+  width: 100%;
+  margin-bottom: 1.2rem;
+}
+
+.turn-name {
+  font-size: 28px;
+  font-weight: 500;
+  color: #1a1a18;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+
+.turn-sub {
+  font-size: 13px;
+  color: #888780;
+  margin-top: 3px;
+  font-weight: 400;
+}
+
+/* ── Warning box ── */
+.warning-box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #faeeda;
+  border: 1px solid #ef9f27;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 12px;
+  color: #412402;
+  margin-bottom: 1.8rem;
+  font-weight: 400;
+}
+
+.warning-icon {
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+/* ── Card ── */
+.card-scene {
+  width: 100%;
+  height: 240px;
+  perspective: 1000px;   /* needed for the 3D flip effect */
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;   /* children keep their 3D positions */
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 16px;
+}
+
+/* when .flipped is added, rotate 180deg to show the back */
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  backface-visibility: hidden;   /* hide the face when it's rotated away */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* ── Front face (before reveal) ── */
+.card-front {
+  background: #2c2c2a;
+  border: 1px solid #2c2c2a;
+}
+
+.card-front-text {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  color: #888780;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+/* ── Back face (after reveal) ── */
+.card-back {
+  background: #ffffff;
+  border: 1px solid #c8c5bc;
+  transform: rotateY(180deg);   /* starts rotated so it's hidden until flip */
+  text-align: center;
+  gap: 0.8rem;
+}
+
+/* normal player card back */
+.card-back .card-role {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: #888780;
+  text-transform: uppercase;
+}
+
+.card-back .card-word {
+  font-size: 38px;
+  font-weight: 500;
+  color: #1a1a18;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.card-back .card-hint-label {
+  font-size: 11px;
+  color: #b4b2a9;
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.06em;
+  margin-top: 0.4rem;
+}
+
+.card-back .card-hint {
+  font-size: 14px;
+  color: #5f5e5a;
+  font-weight: 400;
+}
+
+/* imposter card styling — different look so it feels special */
+.card-back.imposter-card {
+  background: #1a1a18;
+  border-color: #1a1a18;
+}
+
+.card-back.imposter-card .card-role {
+  color: #5f5e5a;
+}
+
+.card-back.imposter-card .card-imposter-label {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  font-family: 'DM Mono', monospace;
+  color: #d85a30;
+  text-transform: uppercase;
+}
+
+.card-back.imposter-card .card-hint-label {
+  color: #3a3a38;
+}
+
+.card-back.imposter-card .card-hint {
+  font-size: 22px;
+  font-weight: 500;
+  color: #f1efe8;
+  letter-spacing: -0.01em;
+}
+
+/* ── Tap hint ── */
+.tap-hint {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: #b4b2a9;
+  letter-spacing: 0.08em;
+  margin-bottom: 1.8rem;
+  transition: opacity 0.3s;
+}
+
+.tap-hint.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── Hide & pass button ── */
+.action-area {
+  width: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.action-area.visible {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+.hide-btn {
+  width: 100%;
+  padding: 15px;
+  border-radius: 12px;
+  border: none;
+  background: #2c2c2a;
+  color: #f1efe8;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  transition: opacity 0.15s;
+}
+
+.hide-btn:hover  { opacity: 0.88; }
+.hide-btn:active { opacity: 0.75; transform: scale(0.99); }
+
+/* ── All done screen ── */
+.done-screen {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.6rem;
+  padding-top: 2rem;
+  width: 100%;
+}
+
+.done-screen.visible {
+  display: flex;
+}
+
+.done-icon {
+  font-size: 32px;
+  color: #2c2c2a;
+  margin-bottom: 0.4rem;
+}
+
+.done-title {
+  font-size: 22px;
+  font-weight: 500;
+  color: #1a1a18;
+  letter-spacing: -0.01em;
+}
+
+.done-sub {
+  font-size: 14px;
+  color: #888780;
+  margin-bottom: 1.2rem;
+}
+
+.play-again-btn {
+  padding: 13px 32px;
+  border-radius: 12px;
+  border: 1px solid #c8c5bc;
+  background: #ffffff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2c2c2a;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.play-again-btn:hover {
+  background: #2c2c2a;
+  color: #f1efe8;
+  border-color: #2c2c2a;
+}
+
+/* ── Hide main content when done screen shows ── */
+.main-content.hidden {
+  display: none;
+}
