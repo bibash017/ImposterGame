@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Imposter — Game</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="game.css" />
+</head>
+<body>
+
+  <div class="wrap">
+
+    <!-- Top bar -->
+    <div class="topbar">
+      <span class="game-label">imposter — word game</span>
+      <span class="progress-label" id="progressLabel"></span>
+    </div>
+
+    <!-- Whose turn -->
+    <div class="turn-header">
+      <div class="turn-name" id="turnName"></div>
+      <div class="turn-sub">your turn</div>
+    </div>
+
+    <!-- Warning shown before reveal -->
+    <div class="warning-box" id="warningBox">
+      <span class="warning-icon">◎</span>
+      make sure nobody else is looking at your screen
+    </div>
+
+    <!-- The card -->
+    <div class="card-scene" id="cardScene">
+      <div class="card" id="card">
+
+        <!-- Front face — shown before reveal -->
+        <div class="card-face card-front">
+          <div class="card-front-text">tap to reveal your word</div>
+        </div>
+
+        <!-- Back face — shown after reveal -->
+        <div class="card-face card-back" id="cardBack">
+          <!-- filled by JS -->
+        </div>
+
+      </div>
+    </div>
+
+
+
+  </div>
+
+  <script src="game.js"></script>
+
+</body>
+</html>
