@@ -139,6 +139,6 @@ async function startGame() {
 }
 
 // Init
-initNames(playerCount);
-buildCountButtons();
-renderPlayers();
+//initNames(playerCount);
+//buildCountButtons();
+//renderPlayers();
